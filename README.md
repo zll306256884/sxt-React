@@ -5,6 +5,41 @@
 >date: 2024-12-05 10:40:43
 ---
 
+>*git config --global user.name "zll306256884"
+>*git config --global user.email "306256884@qq.com"
+>*git config --global user.password "zll970530"
+
+>##vscode提交代码到github时重新设置用户名和密码?
+>1、使用个人访问令牌（Personal Access Token）代替密码
+>*生成个人访问令牌
+    >*登录到 GitHub 账户，点击右上角头像，选择 “Settings”（设置）。
+    >*在左侧菜单中选择 “Developer settings”（开发者设置），然后点击 “Personal access tokens”（个人访问令牌）。
+    >*点击 “Generate new token”（生成新令牌），为令牌命名一个有意义的名称，例如 “VSCode - My Repository Access”，并根据需要勾选相应>的权限。如果只是提交代码，一般选择 “repo”（完整控制仓库）权限即可。
+    >*点击 “Generate token” 按钮生成令牌，生成后请务必复制保存好令牌，因为离开此页面后将无法再次查看完整的令牌内容。
+>    
+>2、在 VSCode 中配置 Git 凭据
+>方法一：使用 Git Credential Manager（推荐）
+    >*安装 Git Credential Manager（GCM）
+>如果尚未安装，根据操作系统下载并安装对应的 Git Credential Manager。例如，在 Windows 上可以从官方网站（https://github.com/GitCredentialManager/git - credential - manager/releases）下载安装程序；在 macOS 上可以使用 Homebrew 等包管理器进行安装（brew install --cask git - credential - manager - core）。
+    >*配置 Git 使用 GCM
+>在终端中输入以下命令（如果之前没有配置过）：
+>git config --global credential.helper manager-core
+    >*在 VSCode 中提交代码
+>当在 VSCode 中首次尝试提交代码到 GitHub 时，会弹出一个窗口要求输入凭据。在这里，用户名输入你的 GitHub 用户名，密码输入刚才生成的个人访问令牌。之后，GCM 会自动保存凭据，下次提交代码时就不需要再次输入了。
+>方法二：通过 Git 配置存储凭据（不太安全，不推荐长期使用）
+>在终端中输入以下命令：
+>git config --global credential.helper store
+>然后在 VSCode 中尝试提交代码，会要求输入用户名和密码。同样，用户名输入你的 GitHub 用户名，密码输入个人访问令牌。输入完成后，Git 会将凭据以明文形式存储在本地文件（~/.git - credentials）中，这存在一定的安全风险，因为如果他人访问你的电脑并获取了该文件，就可以使用你的凭据访问你的 GitHub 账户。
+>
+>3、更新已有的错误凭据（如果之前配置有误）
+>*清除已有凭据（针对通过git config --global credential.helper store方式存储的凭据）
+    >*在终端中，删除~/.git - credentials文件（在 Windows 上是C:\Users\YourUsername\.git - credentials）。
+    >*重新执行git config --global credential.helper store命令，然后按照步骤 2 中的方法重新输入正确的用户名和个人访问令牌。
+>*更新 Git Credential Manager 中的凭据（针对使用 GCM 存储的凭据）
+    >·在终端中输入以下命令来更新凭据：
+    >git credential-manager-core erase
+    >·然后按照步骤 2 中使用 GCM 配置凭据的方法重新输入用户名和个人访问令牌。
+
 > 以下是观看尚硅谷React课程所做的笔记。
 >
 > [尚硅谷React](https://www.bilibili.com/video/BV1wy4y1D7JT?p=43&t=5)
