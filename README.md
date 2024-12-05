@@ -16,11 +16,11 @@
     * 在左侧菜单中选择 “Developer settings”（开发者设置），然后点击 “Personal access tokens”（个人访问令牌）。
     * 点击 “Generate new token”（生成新令牌），为令牌命名一个有意义的名称，例如 “VSCode - My Repository Access”，并根据需要勾选相应的权限。如果只是提交代码，一般选择 “repo”（完整控制仓库）权限即可。
     * 点击 “Generate token” 按钮生成令牌，生成后请务必复制保存好令牌，因为离开此页面后将无法再次查看完整的令牌内容。
-* * *    
+> 
 >2. 在 VSCode 中配置 Git 凭据
 * 方法一：使用 Git Credential Manager（推荐）
     * 安装 Git Credential Manager（GCM）
->如果尚未安装，根据操作系统下载并安装对应的 Git Credential Manager。例如，在 Windows 上可以从官方网站（https://github.com/GitCredentialManager/git-credential-manager/releases）下载安装程序；在 macOS 上可以使用 Homebrew 等包管理器进行安装（brew install --cask git-credential-manager-core）。
+>如果尚未安装，根据操作系统下载并安装对应的 Git Credential Manager。例如，在 Windows 上可以从官方网站（https://github.com/GitCredentialManager/git-credential-manager/releases）下载安装程序；在 macOS 上可以使用 Homebrew 等包管理器进行安装（brew install --cask git-credential-manager-core）。 
 
     * 配置 Git 使用 GCM
 >在终端中输入以下命令（如果之前没有配置过）：
@@ -31,9 +31,10 @@ git config --global credential.helper manager-core
 
 * 方法二：通过 Git 配置存储凭据（不太安全，不推荐长期使用）
 >在终端中输入以下命令：
-git config --global credential.helper store
+git config --global credential.helper store 
+>
 >然后在 VSCode 中尝试提交代码，会要求输入用户名和密码。同样，用户名输入你的 GitHub 用户名，密码输入个人访问令牌。输入完成后，Git 会将凭据以明文形式存储在本地文件（~/.git - credentials）中，这存在一定的安全风险，因为如果他人访问你的电脑并获取了该文件，就可以使用你的凭据访问你的 GitHub 账户。
-* * *
+>
 >3. 更新已有的错误凭据（如果之前配置有误）
 * 清除已有凭据（针对通过git config --global credential.helper store方式存储的凭据）
     * 在终端中，删除~/.git - credentials文件（在 Windows 上是C:\Users\YourUsername\.git - credentials）。
