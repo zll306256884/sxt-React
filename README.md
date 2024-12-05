@@ -43,9 +43,7 @@ git config --global credential.helper store
     * 在终端中输入以下命令来更新凭据：
     git credential-manager-core erase
     * 然后按照步骤 2 中使用 GCM 配置凭据的方法重新输入用户名和个人访问令牌。
->
->
->
+* * *
 > 以下是观看尚硅谷React课程所做的笔记。
 >
 > [尚硅谷React](https://www.bilibili.com/video/BV1wy4y1D7JT?p=43&t=5)
